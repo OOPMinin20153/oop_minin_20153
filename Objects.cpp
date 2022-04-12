@@ -82,7 +82,7 @@ bool Number_Of_Objects_In_Current_Container::HasResult() const
 
 void Number_Of_Objects_In_Current_Container::Number(const Container<Task*>& container)
 {
-  _result = container.GetNumberElements() + 1;
+  _result = container.GetQuantityElements() + 1;
 }
 
 std::string Number_Of_Objects_In_Current_Container::toString() const
@@ -147,7 +147,7 @@ size_t Clean::FindNumberDeletedInString(const std::string str) const
 
 void Clean::CleanContainer(Container<Task*>& container)
 {
-  size_t size_container = container.GetNumberElements();
+  size_t size_container = container.GetQuantityElements();
   _number_deleted = 0;
   for (size_t i = 1; i <= size_container; i++) {
 

@@ -25,7 +25,7 @@ protected:
 class Task: public Object
 {
 public:
-  virtual std::string toString() const;
+  virtual std::string toString() const override;
   virtual bool HasResult() const;
   virtual std::string GetType() const;
 };

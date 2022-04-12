@@ -15,7 +15,7 @@ public:
     _size = 0;
   }
 
-  Container(const T param) 
+  Container(const T& param) 
   {
     _head = new node;
     _head->val = param;
@@ -38,7 +38,7 @@ public:
 
   void operator=(const Container& a) = delete;
 
-  void PushFront(const T param)
+  void PushFront(const T& param)
   {
     node* tmp = new node;
     tmp->val = param;
@@ -48,7 +48,7 @@ public:
     _size++;
   }
 
-  void PushBack(const T param)
+  void PushBack(const T& param)
   {
     node* tmp = new node;
     tmp->val = param;
@@ -85,17 +85,17 @@ public:
       throw "the container is empty!";
   }
 
-  T GetFirst() const
+  const T& GetFirst() const
   {
     return (!IsEmpty()) ? _head->val : throw("the container is empty!");
   }
 
-  T GetLast() const
+  const T& GetLast() const
   {
     return (!IsEmpty()) ? _last->val : throw("the container is empty!");
   }
 
-  size_t GetNumberElements() const
+  size_t GetQuantityElements() const
   {
     return (!IsEmpty()) ? _size : throw("the container is empty!");
   }
@@ -107,12 +107,8 @@ public:
 
   void Swap(Container& other)
   {
-    node* tmp1 = other->_head;
-    node* tmp2 = other->_last;
-    other->_head = this->_head;
-    other->_last = this -> last;
-    this->_head = tmp1;
-    this->_last = tmp2;
+    std::swap(this->_head, other->_head);
+    std::swap(this->_size, other->_last);
     std::swap(this->_size, other->_size);
   }
 
@@ -148,7 +144,7 @@ public:
 
     bool operator !=(const Iterator tmp)const
     {
-     return (this->_it != tmp._it) ? true : false;
+     return this->_it != tmp._it;
     }
 
     T& operator *()

@@ -56,11 +56,11 @@ void GenerateTasksContainer(Container<Task*>& container)
 
 }
 
-void DoneTasks(Container<Task*>& tasks, Container<std::string>& result_tasks)
+void DoneTasks(Container<Task*>& tasks, Container<std::string>& results)
 {
   for (auto iter = tasks.begin(); iter != tasks.end(); ++iter) {
     auto task = *iter;
-    result_tasks.PushBack(task->toString());
+    results.PushBack(task->toString());
   }
 }
 
