@@ -61,43 +61,68 @@ public:
 
   void RemoveFirst() 
   {
-    if (!IsEmpty()) {
-      node* tmp = _head;
-      _head = _head->next;
-      (_head != NULL) ? _head->prev = NULL : _last = NULL;
-      delete tmp;
-      _size--;
+    try {
+      if (!IsEmpty()) {
+        node* tmp = _last;
+        _last = tmp->prev;
+        (_last != NULL) ? _last->next = NULL : _head = NULL;
+        delete tmp;
+        _size--;
+      }
+      else
+        throw std::out_of_range("the container is empty!");
     }
-    else 
-      throw "the container is empty!";
+    catch (std::out_of_range err) {
+      std::cout << err.what() << std::endl;
+    }
   }
 
   void RemoveLast() 
   {
-    if (!IsEmpty()) {
-      node* tmp = _last;
-      _last = tmp->prev;
-      (_last != NULL) ? _last->next = NULL : _head = NULL;
-      delete tmp;
-      _size--;
+    try {
+      if (!IsEmpty()) {
+        node* tmp = _last;
+        _last = tmp->prev;
+        (_last != NULL) ? _last->next = NULL : _head = NULL;
+        delete tmp;
+        _size--;
+      }
+      else
+        throw std::out_of_range("the container is empty!");
     }
-    else
-      throw "the container is empty!";
+    catch (std::out_of_range err) {
+      std::cout << err.what() << std::endl;
+    }
   }
 
   const T& GetFirst() const
   {
-    return (!IsEmpty()) ? _head->val : throw("the container is empty!");
+    try {
+      return (!IsEmpty()) ? _head->val : throw std::out_of_range("the container is empty!");
+    }
+    catch (std::out_of_range err) {
+      std::cout << err.what() << std::endl;
+    }
   }
 
   const T& GetLast() const
   {
-    return (!IsEmpty()) ? _last->val : throw("the container is empty!");
+    try {
+      return (!IsEmpty()) ? _last->val : throw std::out_of_range("the container is empty!");
+    }
+    catch (std::out_of_range err) {
+      std::cout << err.what() << std::endl;
+    }
   }
 
   size_t GetQuantityElements() const
   {
-    return (!IsEmpty()) ? _size : throw("the container is empty!");
+    try {
+      return (!IsEmpty()) ? _size : throw std::out_of_range("the container is empty!");
+    }
+    catch (std::out_of_range err) {
+      std::cout << err.what() << std::endl;
+    }
   }
 
   bool IsEmpty() const
@@ -138,8 +163,13 @@ public:
 
     Iterator& operator ++()
     {
-      (_it != NULL) ? _it = _it->next : throw("out of range");
-      return *this;
+      try {
+        (_it != NULL) ? _it = _it->next : throw std::out_of_range("out of range");
+        return *this;
+      }
+      catch (std::out_of_range err) {
+        std::cout << err.what() << std::endl;
+      }
     }
 
     bool operator !=(const Iterator tmp)const
